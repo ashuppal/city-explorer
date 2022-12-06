@@ -17,3 +17,31 @@ The project was
 2:40 :   Integrated location url in Search component.
 2:50 :   Created an .env file and added it to .gitignore
 2:55 :   Installed axion and implemented in the Search component.
+4:00- ~6:30pm - completing other tasks
+
+
+
+Name of feature: Set up your React repository & API keys.
+
+Estimate of time needed to complete: 10min
+
+Actual time needed to complete: 10min
+
+
+Name of feature: Locations: As a user of City Explorer, I want to enter the name of a location so that I can see the exact latitude and longitude of that location.
+
+
+Estimate of time needed to complete: 20min
+
+Actual time needed to complete: 30min
+
+
+Name of feature: Map: As a user, I want to see a map of the city so that I can see the layout of the area I want to explore.
+
+
+Estimate of time needed to complete: 20min
+
+Actual time needed to complete: 10min
+
+
+
