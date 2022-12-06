@@ -3,6 +3,8 @@ import map from '../images/map.png';
 import restaurantData from '../data/restaurants.json';
 // import locationData from '../data/location.json';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
 const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
 
 class Search extends React.Component {
@@ -47,7 +49,8 @@ class Search extends React.Component {
         <form onSubmit={this.handleLocationSearch}>
           <label>Search for a location</label>
           <input type="text" name="search" placeholder="Enter City here"/>
-          <button type="submit">Explore!</button>
+         
+          <Button variant="success" type="submit">Explore! </Button>
         </form>
         {this.state.locationData 
           ? <>

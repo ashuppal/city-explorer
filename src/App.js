@@ -4,6 +4,8 @@ import Main from './component/Main';
 import {BrowserRouter,Routes,Route,Link} from 'react-router-dom';
 import About from './component/About';
 import Search from './component/Search';
+import './style.css'
+
 
 function App() {
   return (

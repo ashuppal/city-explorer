@@ -1,0 +1,19 @@
+body{
+  background-color: antiquewhite;
+ 
+}
+
+header h1{
+  /* display: flex;
+  flex-direction: row; */
+  text-align: center;
+  padding-top: 30px;
+  
+}
+
+p{
+  color:rgb(61, 92, 215);
+  font-size: large;
+  padding-left: 100px;
+
+}
