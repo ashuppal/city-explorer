@@ -44,4 +44,12 @@ Estimate of time needed to complete: 20min
 Actual time needed to complete: 10min
 
 
+Name of feature: Error
+
+
+Estimate of time needed to complete: 30min
+
+Actual time needed to complete: 20min
+
+
 
