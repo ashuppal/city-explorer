@@ -39,4 +39,7 @@
     transform: rotate(360deg);
   }
 }
+body{
+  background-color: rgb(26, 78, 123);
+}
 

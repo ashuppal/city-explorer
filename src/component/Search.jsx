@@ -1,17 +1,19 @@
 import React from 'react';
 import map from '../images/map.png';
 import restaurantData from '../data/restaurants.json';
- import locationData from '../data/location.json';
+import locationData from '../data/location.json';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
+import '../style.css'
 
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
 
 
 class Search extends React.Component {
+
   constructor() {
     super();
     this.state = {
@@ -22,76 +24,89 @@ class Search extends React.Component {
     }
   } 
 
-  // this should query location IQ for geolocation data
-  handleLocationSearch = async (e) => {
+  handleLocationSearch = (event) => {
+    event.preventDefault();
+    this.setState({
+      locationSearch: event.target.value
 
-    e.preventDefault();
+    });
+    console.log(this.state);
 
-    // const key = ACCESS_KEY ?? 'pk.39ceb2668b4ab7fc0bca0c8f6d7f5c31';
+  }
 
-    let request = {
+  cityData = async (event) => {
+    event.preventDefault();
+    const url = `https://us1.locationiq.com/v1/search.php?key=${ACCESS_KEY}&q=${this.state.locationSearch}&format=json`;
 
-      method: 'GET',
-      
-      url: `https://us1.locationiq.com/v1/search?key=${ACCESS_KEY}&q=${e.target.search.value}&format=json`
+    try {
+      let response = await axios.get(url);
+      console.log(response.data[0].display_name);
+      let city = response.data[0].display_name.split(',')
+      console.log(city);
 
-    };
-
-    // make our location IQ request;
-    try{
-      let response = await axios(request);
       this.setState({
-        locationSearch: e.target.search.value,
-         locationData: response.data[0],
-  
+        location: city[0],
+        latitude: response.data[0].lat,
+        longitude: response.data[0].lon,
+        locationData: response.data[0]
+        
       });
-  
-    } catch(err){
+    } catch (err) {
+      console.log('error happened');
       this.setState({error: err.response.data})
-
     }
-   
-
+    this.weatherData(this.state.latitude, this.state.longitude);
   }
-
-  handleError = () =>{
-    this.setState ({error: null})
+  weatherData = async (lat, lon) => {
+    try{
+      console.log(this.state);
+      let weather = await axios.get(`http://localhost:3001/weather?searchQuery=${this.state.location}`);
+      console.log(weather);
+      this.setState({
+        weather: weather.data
+      })
+      
+      
+      
+    } catch(err){
+      console.log('err', err);
+    }
   }
+  // console.log(this.state);
+handleError = () => {
+  this.setState({error: null});
+}
 
   render() {
-    console.log(ACCESS_KEY);
     return (
       <div id="city-search">
-        <form onSubmit={this.handleLocationSearch}>
-          <label>Search for a location</label>
-          <input type="text" name="search" placeholder="Enter City here"/>
-         
+        <form onSubmit={this.cityData}>
+          <label>City</label>
+          <input onChange={this.handleLocationSearch} type="text" name="search" placeholder="Enter City here" />
           <Button variant="success" type="submit">Explore! </Button>
         </form>
-        {this.state.error 
-        ? <><Alert>There was an error : Invalid request <Button onClick={this.handleError}>Got it!</Button></Alert></>
-         : null
+        {this.state.error
+          ? <Alert>
+         Invalid entry<Button onClick={this.handleError}> Ok! Got it! </Button></Alert>
+          : null
         }
-        
-        {this.state.locationData 
-          ? <>
-              <p>{this.state.locationData.display_name}</p>
-              <p>{this.state.locationData.lat}</p>
-              <p> {this.state.locationData.lon}</p>
-          </>
-          : <p>Please search for a city!</p>
-        }
+
+        city : {this.state.location } 
+        latitude : {this.state.latitude }
+        longitude : {this.state.longitude}
         {this.state.locationSearch && this.state.locationData
-          ? <div id="map"><img src={map} alt="location map"/></div>
+          ? <div id="map"><img src={map} alt="location map" /></div>
           : null
         }
-        {this.state.locationSearch && this.state.restaurantData
-          ? <ul>{this.state.restaurantData.map(place => <li>{place.restaurant}</li>)}</ul>
-          : null
-        }
+        {/* <Weather /> */}
       </div>
+
+
+
     )
   }
 }
+
+
 
 export default Search;
