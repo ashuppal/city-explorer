@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import '../style.css'
+import Movies from './Movies';
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
 
@@ -49,7 +50,7 @@ class Search extends React.Component {
         locationData: response.data[0],
   
 
-      }, () => this.weatherData(response.data[0].lat, response.data[0].lon));
+      }, () => this.weatherData(response.data[0].lat, response.data[0].lon) && this.movieData(city[0]));
     } catch (err) {
       console.log('error happened');
       this.setState({error: err.response.data})
@@ -61,7 +62,7 @@ class Search extends React.Component {
   weatherData = async (lat, lon) => {
     try{
       // console.log(this.state);
-      let weather = await axios.get(`http://localhost:3001/weather?searchQuery=${this.state.location}&lat=${lat}&lon=${lon}`);
+      let weather = await axios.get(`https://city-explorer-rump.onrender.com/weather?searchQuery=${this.state.location}&lat=${lat}&lon=${lon}`);
       // console.log(weather);
       this.setState({
         weather: weather.data
@@ -73,10 +74,25 @@ class Search extends React.Component {
       console.log('err', err);
     }
   }
+
+  movieData = async (city) => {
+    try{
+      let movie = await axios.get(`https://city-explorer-rump.onrender.com/movies?searchQuery=${city}`);
+      console.log(movie);
+      this.setState({
+        movies: movie.data
+      });
+    } catch(err){
+      console.log('err', err);
+    }
+  }
+
+
+
   // console.log(this.state);
-handleError = () => {
-  this.setState({error: null});
-}
+  handleError = () => {
+    this.setState({error: null});
+  }
 
   render() {
     console.log(this.state.weather);
@@ -92,15 +108,29 @@ handleError = () => {
           {JSON.stringify(this.state.error)}<Button onClick={this.handleError}>Thank you!</Button></Alert>
           : null
         }
-
-        city= {this.state.location}
-        lat= {this.state.latitude}
-        lon= {this.state.longitude}
         {this.state.locationSearch && this.state.locationData
-          ? <div id="map"><img src={map} alt="location map" /></div>
+          ? <>
+            <span><strong>city:</strong> {this.state.location}</span>
+            <span><strong>lat:</strong> {this.state.latitude}</span>
+            <span><strong>lon:</strong> {this.state.longitude}</span>
+            <div id="map"><img width="50%" src={map} alt="location map" /></div>
+          </>
           : null
         }
         {/* <Weather /> */}
+        {this.state.weather
+          ? <div id="weather"><strong>Weather forecast: </strong>
+            <span>{this.state.weather[0].weather.description}</span>
+          </div>
+          : null
+        }
+        {this.state.movies
+          ? <div id="movie">
+            <span><strong>Movies with '{this.state.location}' in their title</strong></span>
+            <Movies movies={this.state.movies} />
+          </div>
+          : null
+        }
       </div>
 
 
