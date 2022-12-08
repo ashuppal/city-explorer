@@ -77,7 +77,7 @@ class Search extends React.Component {
 
   movieData = async (city) => {
     try{
-      let movie = await axios.get(`https://city-explorer-rump.onrender.com/movies?searchQuery=${city}`);
+      let movie = await axios.get(`https://city-explorer-rump.onrender.com/movies?city=${city}`);
       console.log(movie);
       this.setState({
         movies: movie.data
