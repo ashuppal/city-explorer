@@ -1,8 +1,8 @@
 //create a class component for movies.
 
 import React from 'react';
-import axios from 'axios';
-import { Card, Button } from 'react-bootstrap';
+// import axios from 'axios';
+import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css'
  
