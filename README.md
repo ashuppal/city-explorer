@@ -53,3 +53,34 @@ Actual time needed to complete: 20min
 
 
 
+Name of feature: Weather 
+
+Estimate of time needed to complete: 30 min
+
+Start time: 3:00pm
+
+Finish time: 3:40pm
+
+Actual time needed to complete: 40 min
+
+
+Name of feature: MOvies 
+
+Estimate of time needed to complete: 30 min
+
+Start time: 3:40pm
+
+Finish time: 3:55pm
+
+Actual time needed to complete: 15 min
+
+
+Name of feature: publish 
+
+Estimate of time needed to complete: 30 min
+
+Start time: 3:55pm
+
+Finish time: 4:20pm
+
+Actual time needed to complete: 25 min
