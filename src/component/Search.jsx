@@ -22,6 +22,17 @@ class Search extends React.Component {
     }
   }
 
+  handleError = (e) => {
+    if (e) {
+      console.log('Error occurred while requesting');
+      this.setState({ error: e });
+    } else {
+      this.setState({ error: null });
+    }
+  }
+
+
+
   handleLocationSearch = (event) => {
     event.preventDefault();
     this.setState({
@@ -64,9 +75,6 @@ class Search extends React.Component {
       this.setState({
         weather: weather.data
       });
-
-
-
     } catch(err){
       console.log('err', err);
     }
@@ -84,9 +92,7 @@ class Search extends React.Component {
     }
   }
 
-
-
-  // console.log(this.state);
+  // eslint-disable-next-line no-dupe-class-members
   handleError = () => {
     this.setState({error: null});
   }
@@ -133,8 +139,6 @@ class Search extends React.Component {
         }
       </div>
 
-
-
     )
   }
 }
@@ -144,3 +148,4 @@ class Search extends React.Component {
 
 
 export default Search;
+
