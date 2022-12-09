@@ -9,9 +9,8 @@ import Alert from 'react-bootstrap/Alert';
 import '../style.css'
 import Movies from './Movies';
 
+
 const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
-
-
 
 class Search extends React.Component {
   constructor() {
@@ -55,9 +54,7 @@ class Search extends React.Component {
       console.log('error happened');
       this.setState({error: err.response.data})
     }
-    // console.log(this.state);
-    // this is a problem! State needs to be set before we make the request, and state is unfortunately not set yet;
-    // this.weatherData(response.data[0].lat, this.state.longitude);
+ 
   }
   weatherData = async (lat, lon) => {
     try{
@@ -118,15 +115,18 @@ class Search extends React.Component {
           : null
         }
         {/* <Weather /> */}
+      
         {this.state.weather
           ? <div id="weather"><strong>Weather forecast: </strong>
+            <span>{this.state.weather[0].date}</span>
             <span>{this.state.weather[0].weather.description}</span>
           </div>
           : null
         }
+     
         {this.state.movies
           ? <div id="movie">
-            <span><strong>Movies with '{this.state.location}' in their title</strong></span>
+            <span><strong>Movies in '{this.state.location}'</strong></span>
             <Movies movies={this.state.movies} />
           </div>
           : null

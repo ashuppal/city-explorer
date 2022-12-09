@@ -15,9 +15,9 @@ class Main extends React.Component{
   render(){
     return(
       <div>
-        <p>Welcome to the site</p>
-        <button onClick={this.toggleShow}>Click here to see hidden message</button>
-        {this.state.show ? <p>You are going to have an amazing day!</p> : null }
+      
+        {/* <button onClick={this.toggleShow}>Click here to see hidden message</button>
+        {this.state.show ? <p>You are going to have an amazing day!</p> : null } */}
       </div>
     )
   }

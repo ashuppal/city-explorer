@@ -5,33 +5,24 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css'
+import CardGroup from 'react-bootstrap/CardGroup';
  
 class Movies extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      movies: this.props.movies,
-      error: null,
-    }
-  }
-
   render() {
     return (
       <div>
-        {this.state.movies.map((movie, index) => {
+        {this.props.movies.map((movie, index) => {
           return (
+            <CardGroup>
             <Card style={{ width: '18rem' }} key={index}>
-              <Card.Img variant="top" src={movie.image_url
-              } />
+              <Card.Img variant="top" src={movie.image_url} className="img-fluid" alt="Responsive image" style={{ width: '300px' }}/>
               <Card.Body>
-                <Card.Text>
+                <Card.Subtitle>
                   Title: {movie.title}
-                </Card.Text>
-                <Card.Text>
+                </Card.Subtitle>
+                <Card.Subtitle>
                   Overview: {movie.overview}
-                </Card.Text>
+                </Card.Subtitle>
                 <Card.Text>
                   Average votes: {movie.average_votes}
                 </Card.Text>
@@ -46,9 +37,12 @@ class Movies extends React.Component {
                 </Card.Text>
               </Card.Body>
             </Card>
+            </CardGroup>
           )
         })}
+        
       </div>
+      
     )
   }
 }

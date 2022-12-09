@@ -1,13 +1,15 @@
 import React from "react";
-
+import Card from 'react-bootstrap/Card';
 
 class About extends React.Component{
   render(){
     return(
-      <h1>Welcome to about me page</h1>
+     
+       <h2>This website will show you the forecast and the map and the movies playing in the selected city </h2>
+     
     )
-    
   }
+ 
 }
 
 export default About;
