@@ -17,14 +17,15 @@ function App() {
       <nav>
         <ul>
         <li>
-        <Link to="/">Home</Link>
+        <Link to="/" style={{color:'white',fontSize: '40px'}}>Home 
+        </Link>
         </li>
         
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/about" style={{color:'white', fontSize: '40px'}}>About</Link>
           </li>
           <li>
-            <Link to="/search"> Search</Link>
+            <Link to="/search" style={{color:'white', fontSize: '40px'}}> Search</Link>
           </li>
         </ul>
       </nav>
