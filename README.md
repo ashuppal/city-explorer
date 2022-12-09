@@ -84,3 +84,13 @@ Start time: 3:55pm
 Finish time: 4:20pm
 
 Actual time needed to complete: 25 min
+
+Name of feature: refactoring the code
+
+Estimate of time needed to complete: 2hr
+
+Start time: 1:00
+
+Finish time: 2:30
+
+Actual time needed to complete:  1hr30min
