@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import '../style.css'
 import Movies from './Movies';
+import Weather from './Weather';
 
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
@@ -57,6 +58,8 @@ class Search extends React.Component {
         location: city[0],
         latitude: response.data[0].lat,
         longitude: response.data[0].lon,
+        description: response.data[0].description,
+        date : response.data[0].date,
         locationData: response.data[0],
   
 
@@ -124,7 +127,8 @@ class Search extends React.Component {
       
         {this.state.weather
           ? <div id="weather"><strong>Weather forecast: </strong>
-            <span>{this.state.weather[0].date}</span>
+          {/* <Weather weather= {this.state.weather[0].date} />  */}
+          <span>{this.state.weather[0].weather.datetime}</span>
             <span>{this.state.weather[0].weather.description}</span>
           </div>
           : null
