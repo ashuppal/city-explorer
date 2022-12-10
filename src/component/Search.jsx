@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import '../style.css'
 import Movies from './Movies';
-import Weather from './Weather';
+// import Weather from './Weather';
 
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
