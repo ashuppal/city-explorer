@@ -73,7 +73,7 @@ class Search extends React.Component {
   weatherData = async (lat, lon) => {
     try{
       // console.log(this.state);
-      let weather = await axios.get(`https://city-explorer-rump.onrender.com/weather?searchQuery=${this.state.location}&lat=${lat}&lon=${lon}`);
+      let weather = await axios.get(`${process.env.REACT_APP_API_URL}/weather?searchQuery=${this.state.location}&lat=${lat}&lon=${lon}`);
       // console.log(weather);
       this.setState({
         weather: weather.data
@@ -85,7 +85,7 @@ class Search extends React.Component {
 
   movieData = async (city) => {
     try{
-      let movie = await axios.get(`https://city-explorer-rump.onrender.com/movies?city=${city}`);
+      let movie = await axios.get(`${process.env.REACT_APP_API_URL}/movies?city=${city}`);
       console.log(movie);
       this.setState({
         movies: movie.data
@@ -128,8 +128,8 @@ class Search extends React.Component {
         {this.state.weather
           ? <div id="weather"><strong>Weather forecast: </strong>
           {/* <Weather weather= {this.state.weather[0].date} />  */}
-          <span>{this.state.weather[0].weather.datetime}</span>
-            <span>{this.state.weather[0].weather.description}</span>
+          <span>{this.state.weather[0].date}</span>
+            <span>{this.state.weather[0].forecast}</span>
           </div>
           : null
         }
